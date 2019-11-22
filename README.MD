@@ -13,13 +13,19 @@ A linguagem utilizada será JavaScript na biblioteca node.js 8.11.2 com o framew
 
 ## Banco de Dados
 
-O banco de dados utilizado será o MariaDB versão 10.4.8.
-
-## Servidor
-
-O servidor utilizado será o Apache versão 2.4.27
+O banco de dados utilizado será o Postgres
 
 # INSTALAÇÃO E EXECUÇÃO
+
+## DOCKER
+
+Sugerimos utilizar o docker para rodar o banco de dados.
+
+docker pull postgres
+docker run --name teste-postgres --network=postgres-network -e "POSTGRES_PASSWORD=toor" -p 5432:5432 -v ~/Documentos/PostgreSQL:/var/lib/postgresql/data -d postgres
+
+docker pull dpage/pgadmin4
+docker run --name teste-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=luiz.soares@estudante.ufla.br" -e "PGADMIN_DEFAULT_PASSWORD=toor" -d dpage/pgadmin4
 
 ## FRONTEND
 
