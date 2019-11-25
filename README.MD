@@ -65,6 +65,17 @@ O eslint ja está configurado no projeto de backend.
 
 - [VSCode](https://github.com/prettier/prettier-vscode)
 
-### GIT FLOW
+## GIT FLOW
 
 Nesse projeto utilizamos o git flow como framework de git. Mais informações em [Git Flow](https://medium.com/trainingcenter/utilizando-o-fluxo-git-flow-e63d5e0d5e04)
+
+### Regras básicas
+
+- Antes de trabalhar em uma funcionalidade ou correção deve-se criar uma nova branch a partir da develop com o padrão:
+
+  - Novas funcionalidades: feature/describeYourFeature
+  - Correções: bugfix/describeYourFix
+
+- Ao terminar uma funcionalidade ou correção abrir pull request e após ao menos uma aprovação fazer o merge na develop
+
+- Ao terminar uma etapa de desenvolvimento, fazer o merge na master e gerar uma release
