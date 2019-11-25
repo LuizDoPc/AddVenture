@@ -12,10 +12,16 @@ routes.post("/users", UserController.store);
 
 routes.get("/aventura", AdventureController.index);
 routes.post("/users/:user_id/aventura", AdventureController.store);
+routes.get("/users/:user_id/aventura", AdventureController.adventures);
 
 routes.get("/tipo-aventura", AdventureTypeController.index);
 routes.post("/tipo-aventura", AdventureTypeController.store);
 
 routes.post("/users/:user_id/subscription", SubscriptionController.store);
+routes.get("/users/:user_id/subscription", SubscriptionController.index);
+routes.get(
+  "/aventura/:adventure_id/subscription",
+  SubscriptionController.adventures
+);
 
 module.exports = routes;
