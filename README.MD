@@ -64,3 +64,7 @@ O eslint ja está configurado no projeto de backend.
 **Links de instalação**
 
 - [VSCode](https://github.com/prettier/prettier-vscode)
+
+### GIT FLOW
+
+Nesse projeto utilizamos o git flow como framework de git. Mais informações em [Git Flow](https://medium.com/trainingcenter/utilizando-o-fluxo-git-flow-e63d5e0d5e04)
