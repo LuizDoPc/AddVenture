@@ -79,3 +79,5 @@ Nesse projeto utilizamos o git flow como framework de git. Mais informações em
 - Ao terminar uma funcionalidade ou correção abrir pull request e após ao menos uma aprovação fazer o merge na develop
 
 - Ao terminar uma etapa de desenvolvimento, fazer o merge na master e gerar uma release
+
+- A descrição do pull request deve conter o trecho "Closes: #123" com o id da issue
