@@ -38,5 +38,18 @@ module.exports = {
     });
 
     return res.json(adventure);
+  },
+  async adventures(req, res) {
+    const { user_id } = req.params;
+
+    const adventure = findAll({
+      where: {
+        user_id
+      }
+    });
+
+    if (!adventure) return res.json([]); // TODO: implement empty array response
+
+    return res.json(adventure);
   }
 };

@@ -30,5 +30,43 @@ module.exports = {
     });
 
     return res.json(subscription);
+  },
+  async index(req, res) {
+    const { user_id } = req.params;
+
+    const user = await User.findByPk(user_id);
+    if (!user) return res.status(400).json({ error: "User not found" });
+    if (user.user_type === 0)
+      return res
+        .status(400)
+        .json({ error: "User type does not have subscriptions" });
+
+    const subscription = await Subscription.findAll({
+      where: {
+        user_id
+      }
+    });
+
+    if (!subscription) return res.json([]); // TODO: implement empty array response
+
+    return res.json(subscription);
+  },
+  async adventures(req, res) {
+    const { adventure_id } = req.params;
+
+    const adventure = await Adventure.findByPk(adventure_id);
+
+    if (!adventure)
+      return res.status(400).json({ error: "Adventure not found" });
+
+    const subscription = await Subscription.findAll({
+      where: {
+        adventure_id
+      }
+    });
+
+    if (!subscription) return res.json([]); // TODO: implement empty array response
+
+    return res.json(subscription);
   }
 };
