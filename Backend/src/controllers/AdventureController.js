@@ -42,7 +42,7 @@ module.exports = {
   async adventures(req, res) {
     const { user_id } = req.params;
 
-    const adventure = findAll({
+    const adventure = await Adventure.findAll({
       where: {
         user_id
       }
