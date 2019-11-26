@@ -17,6 +17,14 @@ class User extends Model {
       }
     );
   }
+
+  static associate(models) {
+    this.hasMany(models.Adventure, { foreignKey: "user_id", as: "adventures" });
+    this.hasMany(models.Subscription, {
+      foreignKey: "user_id",
+      as: "subscriptions"
+    });
+  }
 }
 
 module.exports = User;

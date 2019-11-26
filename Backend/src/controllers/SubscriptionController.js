@@ -62,12 +62,20 @@ module.exports = {
     const subscription = await Subscription.findAll({
       where: {
         user_id
-      }
+      },
+      include: [
+        {
+          association: "adventure"
+        },
+        {
+          association: "adventure_type"
+        }
+      ]
     });
 
     if (!subscription) return res.json([]); // TODO: implement empty array response
 
-    return res.json(await getAdventureDetails(subscription));
+    return res.json(subscription);
   },
   async adventures(req, res) {
     const { adventure_id } = req.params;
@@ -80,11 +88,19 @@ module.exports = {
     const subscription = await Subscription.findAll({
       where: {
         adventure_id
-      }
+      },
+      include: [
+        {
+          association: "adventure"
+        },
+        {
+          association: "adventure_type"
+        }
+      ]
     });
 
     if (!subscription) return res.json([]); // TODO: implement empty array response
 
-    return res.json(await getAdventureDetails(subscription));
+    return res.json(subscription);
   }
 };

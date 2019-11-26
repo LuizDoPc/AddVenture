@@ -11,6 +11,13 @@ class AdventureType extends Model {
       }
     );
   }
+
+  static associate(models) {
+    this.belongsTo(models.Subscription, {
+      foreignKey: "adventure_type_id",
+      as: "subscriptions"
+    });
+  }
 }
 
 module.exports = AdventureType;
