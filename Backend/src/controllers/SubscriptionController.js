@@ -84,5 +84,27 @@ module.exports = {
     if (!subscription) return res.json([]); // TODO: implement empty array response
 
     return res.json(subscription);
-  }
+  },
+  async update(req, res) {
+    const { subscription_id } = req.params;
+    const { adventure_type_id } = req.body;
+
+    const subscription = await Subscription.findByPk(subscription_id);
+
+    if (!subscription)
+      return res.status(502).json({ error: "Subscription not found" });
+
+    const response = await Subscription.update(
+      {
+        adventure_type_id
+      },
+      {
+        returning: true,
+        where: { id: subscription_id }
+      }
+    );
+
+    return res.json(response[1]);
+  },
+  async delete(req, res) {}
 };
