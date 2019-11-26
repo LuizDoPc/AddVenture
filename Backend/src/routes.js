@@ -4,11 +4,11 @@ import UserController from "./controllers/UserController";
 import AdventureTypeController from "./controllers/AdventureTypeController";
 import AdventureController from "./controllers/AdventureController";
 import SubscriptionController from "./controllers/SubscriptionController";
+import AuthController from "./controllers/AuthController";
 
 const routes = express.Router();
 
 routes.get("/users", UserController.index);
-routes.post("/users", UserController.store);
 
 routes.get("/aventura", AdventureController.index);
 routes.post("/users/:user_id/aventura", AdventureController.store);
