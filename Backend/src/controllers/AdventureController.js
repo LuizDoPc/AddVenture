@@ -84,8 +84,10 @@ module.exports = {
     if (!adventure)
       return res.status(502).json({ error: "Adventure not found" });
 
-    Adventure.destroy({
+    const response = await Adventure.destroy({
       where: { id: adventure_id }
     });
+
+    return res.json(response);
   }
 };
