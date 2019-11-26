@@ -13,8 +13,8 @@ routes.post("/users", UserController.store);
 routes.get("/aventura", AdventureController.index);
 routes.post("/users/:user_id/aventura", AdventureController.store);
 routes.get("/users/:user_id/aventura", AdventureController.adventures);
-routes.get("/aventura/:user_id", AdventureController.update);
-routes.get("/aventura/:user_id", AdventureController.delete);
+routes.put("/aventura/:adventure_id", AdventureController.update);
+routes.delete("/aventura/:adventure_id", AdventureController.delete);
 
 routes.get("/tipo-aventura", AdventureTypeController.index);
 routes.post("/tipo-aventura", AdventureTypeController.store);
