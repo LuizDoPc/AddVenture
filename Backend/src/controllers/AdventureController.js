@@ -51,5 +51,41 @@ module.exports = {
     if (!adventure) return res.json([]); // TODO: implement empty array response
 
     return res.json(adventure);
+  },
+  async update(req, res) {
+    const { adventure_id } = req.params;
+    const { title, date, location, description } = req.body;
+
+    const adventure = await Adventure.findByPk(adventure_id);
+
+    if (!adventure)
+      return res.status(502).json({ error: "Adventure not found" });
+
+    const resposnse = await Adventure.update(
+      {
+        title,
+        date,
+        location,
+        description
+      },
+      {
+        returning: true,
+        where: { id: adventure_id }
+      }
+    );
+
+    return res.json(resposnse[1]);
+  },
+  async delete(req, res) {
+    const { adventure_id } = req.params;
+
+    const adventure = await Adventure.findByPk(adventure_id);
+
+    if (!adventure)
+      return res.status(502).json({ error: "Adventure not found" });
+
+    Adventure.destroy({
+      where: { id: adventure_id }
+    });
   }
 };
