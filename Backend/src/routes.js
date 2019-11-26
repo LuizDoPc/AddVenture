@@ -25,5 +25,7 @@ routes.get(
   "/aventura/:adventure_id/subscription",
   SubscriptionController.adventures
 );
+routes.put("/subscription/:subscription_id", SubscriptionController.update);
+routes.delete("/subscription/:subscription_id", SubscriptionController.delete);
 
 module.exports = routes;
