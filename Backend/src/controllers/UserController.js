@@ -1,4 +1,5 @@
 import User from "../models/User";
+import EncryptorService from "../services/EncryptorService";
 
 module.exports = {
   async index(req, res) {
@@ -23,7 +24,7 @@ module.exports = {
       address,
       phone,
       login,
-      password,
+      password: EncryptorService.hashPassword(password),
       document,
       user_type
     });
