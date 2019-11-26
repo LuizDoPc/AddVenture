@@ -13,6 +13,9 @@ class User extends Model {
         user_type: DataTypes.INTEGER
       },
       {
+        defaultScope: {
+          attributes: { exclude: ["password"] }
+        },
         sequelize
       }
     );
