@@ -3,6 +3,24 @@ import User from "../models/User";
 import AdventureType from "../models/AdventureType";
 import Adventure from "../models/Adventure";
 
+const getAdventureDetails = async subscription => {
+  const response = [];
+
+  for (let subs of subscription) {
+    const { adventure_type_id, adventure_id } = subs;
+
+    const adventureType = await AdventureType.findByPk(adventure_type_id);
+    const adventure = await Adventure.findByPk(adventure_id);
+
+    response.push({
+      subscription: subs,
+      adventure,
+      adventureType
+    });
+  }
+  return response;
+};
+
 module.exports = {
   async store(req, res) {
     const { user_id } = req.params;
@@ -49,7 +67,7 @@ module.exports = {
 
     if (!subscription) return res.json([]); // TODO: implement empty array response
 
-    return res.json(subscription);
+    return res.json(await getAdventureDetails(subscription));
   },
   async adventures(req, res) {
     const { adventure_id } = req.params;
@@ -67,6 +85,6 @@ module.exports = {
 
     if (!subscription) return res.json([]); // TODO: implement empty array response
 
-    return res.json(subscription);
+    return res.json(await getAdventureDetails(subscription));
   }
 };
