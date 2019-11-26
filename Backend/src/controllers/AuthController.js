@@ -10,13 +10,18 @@ module.exports = {
     }
 
     try {
+      const userToCheck = await User.findOne({
+        where: { login },
+        attributes: ["password"]
+      });
+
       const user = await User.findOne({
         where: { login }
       });
 
-      if (!user) return res.status(404).json("user-not-found");
+      if (!userToCheck) return res.status(404).json("user-not-found");
 
-      if (EncryptorService.comparePassword(password, user)) {
+      if (EncryptorService.comparePassword(password, userToCheck)) {
         return res.status(200).json({
           token: EncryptorService.generateToken(user.id),
           user
