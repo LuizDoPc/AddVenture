@@ -106,5 +106,18 @@ module.exports = {
 
     return res.json(response[1]);
   },
-  async delete(req, res) {}
+  async delete(req, res) {
+    const { subscription_id } = req.params;
+
+    const subscription = await Subscription.findByPk(subscription_id);
+
+    if (!subscription)
+      return res.status(502).json({ error: "Subscription not found" });
+
+    const response = await Subscription.destroy({
+      where: { id: subscription_id }
+    });
+
+    return res.json(response);
+  }
 };
