@@ -4,7 +4,10 @@ const algorithm = "HS256";
 
 module.exports = {
   issue: payload => {
-    const token = jwt.sign(payload, jwtSecret, { algorithm });
+    const token = jwt.sign(payload, jwtSecret, {
+      algorithm,
+      expiresIn: "2 days"
+    });
     return token;
   },
 
