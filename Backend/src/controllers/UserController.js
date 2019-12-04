@@ -17,7 +17,6 @@ module.exports = {
       document,
       user_type
     } = req.body;
-    console.log(req.body)
 
     const user = await User.create({
       name,

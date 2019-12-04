@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>AddVenture</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>AddVenture</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <script>
-    $(document).ready(function(){
-
-      $.ajax({
-        type: 'POST',
-        url: 'http://localhost:4444/users',
-        headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-        data: {foo: 'bar'},
-        
-        dataType: 'json'
-      })
-
-    });
-  </script>
-</head>
-<body>
-</body>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:4444/users",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          data: JSON.stringify({
+            name: "Luiz",
+            email: "luiz.soares@estudante.ufla.br",
+            address: "Rua dos bobos, 0",
+            phone: "37 9 88251272",
+            login: "login",
+            password: "123",
+            document: "12345678909",
+            user_type: "1"
+          }),
+          success: function(res) {
+            console.log(res);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body></body>
 </html>
