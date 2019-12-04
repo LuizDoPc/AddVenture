@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/users", UserController.store);
-app.use("/login", AuthController.login);
+app.post("/login", AuthController.login);
 
 app.use("/", authMiddleware);
 

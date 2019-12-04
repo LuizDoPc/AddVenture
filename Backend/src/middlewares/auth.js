@@ -2,8 +2,9 @@ import User from "../models/User";
 import jwtService from "../services/jwtService";
 
 module.exports = async (req, res, next) => {
-  const { token } = req.body;
-
+  let token;
+  token = req.query.token;
+  if(!token) token = req.body.token;
   try {
     const response = jwtService.verify(token);
 
