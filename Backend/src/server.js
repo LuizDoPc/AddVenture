@@ -20,4 +20,4 @@ app.use("/", authMiddleware);
 
 app.use(routes);
 
-app.listen(3333, () => console.log("Listening..."));
+app.listen(4444, () => console.log("Listening..."));
