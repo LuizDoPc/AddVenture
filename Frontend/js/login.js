@@ -1,8 +1,9 @@
 
-pageUnauthorized('index.html', false);
+checkAuth();
 
 $(document).ready(function(){
   $("#login").submit(function(e){
+    console.log(this);
     let login_data = new FormData(this);
     let self = this;
     
@@ -18,7 +19,7 @@ $(document).ready(function(){
       data: JSON.stringify(Object.fromEntries(login_data)),
       success: function(res) {
         startSession(res);
-        pageUnauthorized('index.html', false);
+        checkAuth();
         loadingFormShow(self, false);
       },
       error: function(xhr, status, error) {

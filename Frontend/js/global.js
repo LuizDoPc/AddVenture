@@ -61,20 +61,20 @@ function errorFormShow (show=true, selector=null, msg='', oneInput=false) {
 
 
 function campoProfile () {
-  let user = getLocalStorage('user');
+  let user = getSession('user');
   
-  tipo = 'Aventureiro';
+  tipo = 'aventureiro';
   if (user['user_type'] == 0) {
-    tipo = 'Guia';
+    tipo = 'guia';
   }
 
-  var campo = '<div class="container p-3 profile">\
+  var campo = '<div class="container rounded-right m-0 p-3 sticky-top profile">\
     <div class="username">\
-      <div class="small">Você está logado como</div>\
+      <div class="small">Logado com:</div>\
       '+user['name'].split(' ')[0].toUpperCase()+'\
     </div>\
     <div class="small">\
-      Conta '+tipo+'\
+      Sua categoria de usuário é <b>'+tipo+'</b>.\
     </div>\
   </div>';
 

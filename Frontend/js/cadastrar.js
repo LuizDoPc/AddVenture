@@ -1,4 +1,4 @@
-pageUnauthorized('index.html', false);
+checkAuth();
 
 function validarCpf (cpf) {
   cpf = cpf.replace(/[^\d]+/g,'');	
@@ -104,10 +104,10 @@ $(document).ready(function(){
   $('.tel').mask(telMaskBehavior, telOptions);
   $('.cnpj').mask('00.000.000/0000-00');
   $('.cpf').mask('000.000.000-00');
+
   $('#cadastrar').submit(function(e){
     let self = this;
     let dados = new FormData(self);
-
 
     errorFormShow(false, self);
     loadingFormShow(self);

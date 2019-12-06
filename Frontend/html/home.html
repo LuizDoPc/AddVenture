@@ -19,8 +19,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/home.css">
 
 
     <!-- JQuery -->
@@ -36,27 +36,26 @@
       crossorigin="anonymous">
     </script>
 
-  <script src="js/auth.js"></script>
-  <script src="js/global.js"></script>
-  <script src="js/home.js"></script>
-  <script src="js/home.guia.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/global.js"></script>
+  <script src="../js/home.js"></script>
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-expand mt-5 navbar-principal mb-3">
+  <nav class="navbar navbar-expand-lg navbar-expand mt-5 navbar-principal mb-5">
     <div class="container">
-        <a href="index.html" class="navbar-brand mr-4"><img src="imgs/logo.png" height="30"></a>
+        <a href="index.html" class="navbar-brand mr-4"><img src="../imgs/logo.png" height="30"></a>
         
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Minhas aventuras</a>
+              <a class="nav-link" href="include/home.guia.html" target="include">Minhas aventuras</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cadastrar nova aventura</a>
+              <a class="nav-link" href="include/cadastrar.aventura.html" target="include">Cadastrar nova aventura</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link logout" href="#">Logout</a>
+              <a class="nav-link logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -69,13 +68,8 @@
       
       <div class="col-auto rounded-left conteudo-esq">
 
-        <div class="container p-3">
+        <div class="container p-3 include">
 
-            <div class="cabecalho h4">// Minhas aventuras</div>
-
-            <div class="lista-aventuras">
-              Ainda não há aventuras cadastradas!
-            </div>
         </div>
         
       </div>

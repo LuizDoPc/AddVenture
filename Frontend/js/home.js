@@ -1,7 +1,10 @@
-function createModalAdventure (aventura, id, editable=false) {
+checkAuth();
+
+function createModalAdventure (aventura=[], id, editable=false) {
   var tituloModal = '';
   if (aventura.length == 0) {
     tituloModal = 'Cadastrar nova aventura';
+    aventura['id'] = '';
     aventura['title'] = '';
     aventura['date'] = '';
     aventura['location'] = '';
@@ -11,7 +14,7 @@ function createModalAdventure (aventura, id, editable=false) {
     tituloModal = aventura['title'];
 
   if (editable) {
-  var modal = '<div class="modal fade" id="modalAdventure'+id+'" tabindex="-1" role="dialog">\
+  var modal = '<div class="modal fade" id="modalAdventure'+aventura['id']+'" tabindex="-1" role="dialog">\
     <div class="modal-dialog" role="document">\
       <div class="modal-content">\
 \
@@ -24,8 +27,8 @@ function createModalAdventure (aventura, id, editable=false) {
 \
         <div class="modal-body">\
           <div class="form-global">    \
-            <form id="form-modal-aventura" method="post">\
-              <input type="hidden" name="user_type" value="0">\
+            <form class="form-modal-aventura" method="post">\
+              <input type="hidden" name="id" value="'+aventura['id']+'">\
     \
               <label for="title" class="input-group">\
                 <input type="text" class="form-control" id="title" name="title" placeholder="Título" value="'+aventura['title']+'" backup="'+aventura['title']+'" required="">\
@@ -42,11 +45,11 @@ function createModalAdventure (aventura, id, editable=false) {
                 <div class="input-group-prepend">\
                   <span class="input-group-text"><i class="fa fa-map-pin"></i></span>\
                 </div>\
-                <input type="input" class="form-control" id="location" name="location" placeholder="Local" value="'+aventura['location']+'" location="'+aventura['location']+'" required="">\
+                <input type="input" class="form-control" id="location" name="location" placeholder="Local" value="'+aventura['location']+'" backup="'+aventura['location']+'" required="">\
               </label>\
               \
               <label class="input-group" for="description">\
-                <textarea class="form-control" id="description" name="description" placeholder="Descrição" backup=""'+aventura['description']+'" required>'+aventura['description']+'</textarea>\
+                <textarea class="form-control" id="description" name="description" placeholder="Descrição" backup="'+aventura['description']+'" required>'+aventura['description']+'</textarea>\
               </label>\
               \
               <div class="container px-0 text-right footer">\
@@ -69,8 +72,9 @@ function createModalAdventure (aventura, id, editable=false) {
 }
 
 function eventosModaisAventura () {
-  $('.modal .descartar').on('click', function(){
-    var formulario = $(this).closest('form');
+  $('.modal').on('hidden.bs.modal', function () {
+    var formulario = $(this).find('form');
+    
     formulario.find('textarea, input').each(function() {
       $(this).val($(this).attr('backup'));
     })
@@ -78,13 +82,12 @@ function eventosModaisAventura () {
 }
 
 //aventuras dispoe aventuras
- function displayAventuras (aventuras) {
+ function displayAventuras (aventuras = []) {
   var editable = false;
-  if (getLocalStorage('user')['user_type'] == 0) editable = true;
+  if (getSession('user')['user_type'] == 0) editable = true;
 
   if (aventuras.length > 0) {
     let createElements = '';
-    var id = 0;
     let indexSorteio = Math.floor(Math.random() * aventuras.length);
     let aventuraDestaque = aventuras[indexSorteio];
     delete aventuras[indexSorteio];
@@ -93,9 +96,9 @@ function eventosModaisAventura () {
     <h1 class="display-4">'+aventuraDestaque['title']+'</h1>\
     <p>'+aventuraDestaque['description']+'</p>\
     <p>'+aventuraDestaque['date']+'</p>\
-    <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#modalAdventure'+id+'">Ver detalhes</a>\
+    <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#modalAdventure'+aventuraDestaque['id']+'">Ver detalhes</a>\
     </div>';
-    $('body').append(createModalAdventure(aventuraDestaque, id++, editable));
+    $('body').append(createModalAdventure(aventuraDestaque, aventuraDestaque['id'], editable));
 
     createElements += jumbotron;
 
@@ -108,11 +111,11 @@ function eventosModaisAventura () {
                 <h5 class="card-title">'+aventura['title']+'</h5>\
                 <p class="card-text">'+aventura['description']+'</p>\
                 <p class="card-text"><small class="text-muted">'+aventura['date']+'</small></p>\
-                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAdventure'+id+'">Ver detalhes</a>\
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAdventure'+aventura['id']+'">Ver detalhes</a>\
               </div>\
             </div>';
       
-      $('body').append(createModalAdventure(aventura, id++, editable));
+      $('body').append(createModalAdventure(aventura, aventura['id'], editable));
     })
     card += '</div>';
 
@@ -124,7 +127,30 @@ function eventosModaisAventura () {
 }
 
 
+function incluirPagina (src) {
+  $('.include').load(src);
+}
+
 
 $(document).ready(function(){
+  $(document).on('click', 'a[target="include"]', function(e){
+    incluirPagina($(this).attr('href'));
+    e.preventDefault();
+  });
+
+  switch (getSession('user')['user_type']) {
+    case 0:
+      incluirPagina('../html/include/home.guia.html');
+      break;
+    case 1:
+      incluirPagina('../html/include/home.aventureiro.html');
+      break;
+  }
+  
   campoProfile();
+
+  $('a.logout').click(function(){
+    unsetSession();
+    checkAuth();
+  });
 })

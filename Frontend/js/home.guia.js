@@ -1,55 +1,64 @@
-pageUnauthorized('index.html', true, 0);
+checkAuth();
 
  //aventuras crias pelo guia logado
-function recuperaAventurasHome (token) {
-
-/*
+function recuperaAventurasHome () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:3333/users/2/aventura",
+    url: "http://localhost:4444/users/"+getSession('user')['id']+"/aventura",
     headers: {
       "Content-Type": "application/json"
     },
-    data: "token="+getLocalStorage('token'),
+    data: "token="+getSession('token'),
     success: function(res) {
-      return res;
+      displayAventuras(res);
     },
     error: function(err) {
       return err;
     }
   });
-  */
-  
+}
 
-  
+function salvarAlteracoesAventura (self) {
+  let dados = new FormData(self);
+  let id = dados.get('id');
+  dados.delete('id');
+  dados.set('token', getSession('token'));
+  errorFormShow(false, self);
+  loadingFormShow(self);
 
- let aventuras = [];
-
-  for (i = 0; i<15; i++){
-    let aventura = {
-      title: 'Aventura '+(i+1),
-      date: '27/10/2020',
-      location: 'Lavras',
-      description: 'Uma aventura bem loca bla bla abssa vas asf sa f nkasjfh lkjasfh jkas jhfaj hasflkj',
-      user_id: getLocalStorage('token')
+  $.ajax({
+    type: "PUT",
+    url: "http://localhost:4444/aventura/"+id,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    data: JSON.stringify(Object.fromEntries(dados)),
+    success: function(res) {
+      msgFormPopUp(self, true, '<p class="h1 mb-0"><b>"'+res[0].title+'"</b></p><p class="h4 mb-3">Aventura alterada com sucesso!</p>\
+      <p><a class="btn btn-primary" href="home.guia.html" target="include">Atualizar página</a></p>');
+      loadingFormShow(self, false);
+    },
+    error: function(xhr, status, error) {
+      console.log('3')
+      errorFormShow (true, self, 'Erro inexperado. Tente novamente!');
     }
-    aventuras.push(aventura);
-  }
-
-
-  return aventuras;
-
-
+  })
 }
 
 
 $(document).ready(function(){
   $('nav .logout').click(function() {
     unsetSession();
-    pageUnauthorized("login.html");
+    checkAuth();
   });
 
-  minhasAventuras = recuperaAventurasHome(getLocalStorage('token'));
-  displayAventuras(minhasAventuras);
+  recuperaAventurasHome();
   eventosModaisAventura();
+
+  $(document).on('submit','.form-modal-aventura', function(e){
+    salvarAlteracoesAventura(this);
+    e.preventDefault();
+    return false;
+  })
+
 })

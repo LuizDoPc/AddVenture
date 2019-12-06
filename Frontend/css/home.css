@@ -19,6 +19,7 @@
 
 .conteudo {
   width: 1220px;
+  margin-bottom: 20px;
 }
 
 .conteudo .conteudo-esq {
@@ -26,13 +27,25 @@
   background: white;
 }
 
-
 .conteudo .conteudo-esq .card-rows .card {
   float: left !important;
   margin: 6px;
-  max-width: 264px;
+  max-width: 264px !important;
+  width: 264px !important;
 }
 
+.conteudo .conteudo-esq .cabecalho {
+  font-weight: 700;
+  font-size: 23px;
+  color: var(--marrom-claro);
+  text-transform: uppercase;
+}
+
+.conteudo .conteudo-esq .cabecalho span {
+  color: var(--laranja);
+  top: -2px;
+  position: relative;
+}
 
 .conteudo .conteudo-dir .profile {
   background: var(--marrom-medio);
