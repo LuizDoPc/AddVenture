@@ -1,0 +1,53 @@
+.navbar-principal .nav-link {
+  color: white!important;
+  font-weight: 700;
+  padding: 8px 16px !important;
+  margin: 0 5px;
+}
+
+.navbar-principal .nav-item.active .nav-link,
+.navbar-principal .nav-link:hover {
+  background: var(--laranja) !important;
+  text-decoration: none !important;
+}
+
+.conteudo,
+.conteudo-esq,
+.conteudo-dir {
+  padding: 0 !important;
+}
+
+.conteudo {
+  width: 1220px;
+}
+
+.conteudo .conteudo-esq {
+  width: 860px !important;
+  background: white;
+}
+
+
+.conteudo .conteudo-esq .card-rows .card {
+  float: left !important;
+  margin: 6px;
+  max-width: 264px;
+}
+
+
+.conteudo .conteudo-dir .profile {
+  background: var(--marrom-medio);
+  color: white;
+}
+
+.conteudo .conteudo-dir .profile .username {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.conteudo .conteudo-dir .profile .username .small {
+  margin-bottom: -10px;
+}

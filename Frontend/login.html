@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="css/login.css">
 
 
     <!-- JQuery -->
@@ -30,20 +30,19 @@
       crossorigin="anonymous">
     </script>
 
-    <script src="../js/login.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/login.js"></script>
 
 </head>
 <body>
   <div class="container">
 
-  <div class="row justify-content-center py-5"><img src="../imgs/logo.png"></div>
+  <div class="row justify-content-center py-5"><img src="imgs/logo.png"></div>
   
   <div class="row justify-content-center">
     <div class="col-auto px-0">
       <div class="container p-3 rounded form-global form-login">
-        <div class="loading">
-          <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-        </div>
 
         <div class="container text-center form-title">Olá, faça login para utilizar o sistema.</div>
 
@@ -63,15 +62,15 @@
             <input type="password" class="form-control" name="password" placeholder="Senha" required>
           </div>
 
-          <div class="container px-0 text-right">
+          <div class="container px-0 text-right footer">
               <div class="dropdown d-inline">
                   <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Criar conta
                     <i class="fa fa-caret-down"></i>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="cadastrar_aventureiro.html">Criar conta <b>aventureiro</b></a>
-                    <a class="dropdown-item" href="cadastrar_guia.html">Criar conta <b>guia</b></b></a>
+                    <a class="dropdown-item" href="cadastrar.aventureiro.html">Criar conta <b>aventureiro</b></a>
+                    <a class="dropdown-item" href="cadastrar.guia.html">Criar conta <b>guia</b></b></a>
                   </div>
                 </div>
             <button type="submit" class="btn btn-primary">Entrar</button>

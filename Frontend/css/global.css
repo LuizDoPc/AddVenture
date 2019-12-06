@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900&display=swap');
 
 * {
-  --marrom-escuro: #0A0909;
-  --marrom-medio: #2E2A26;
-  --marrom-claro: #47423E;
-  --marrom-10: #c5c0bc;
-  --laranja: #EF610F;
-  --laranja-hover: #ff6c17;
-  --laranja-foco: #EF610F66; /* opacity 40% */
-  --box-focus: 0px 0px 0px 3px var(--laranja-foco);
+  --marrom-escuro: #0A0909!important;
+  --marrom-medio: #2E2A26!important;
+  --marrom-claro: #47423E!important;
+  --marrom-10: #c5c0bc!important;
+  --laranja: #EF610F!important;
+  --laranja-hover: #ff6c17!important;
+  --laranja-foco: #EF610F66!important; /* opacity 40% */
+  --danger-color: #dc3545!important;
+  --danger-color-foco: #dc354566!important;
+  --box-focus: 0px 0px 0px 3px;
   --raio: .25rem!important;
   font-family: 'Cairo', sans-serif;
 }
@@ -20,7 +22,7 @@
 }
 
 body {
-  background: url(../imgs/background.png) no-repeat fixed;
+  background: url(../imgs/background.png) no-repeat fixed var(--marrom-escuro);
   background-size: cover;
 }
 
@@ -85,6 +87,18 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 .hr {
   border: 0;
   border-top: 1px solid var(--marrom-10);
@@ -110,6 +124,7 @@ a:focus {
   background: var(--laranja);
   border-color: var(--laranja);
   font-weight: 700;
+  color: white!important;
 }
 
 .btn-primary:hover,
@@ -118,11 +133,13 @@ a:focus {
 .btn-primary:target {
   background: var(--laranja-hover)!important;
   border-color: var(--laranja)!important;
+  color: white!important;
 }
 
 .btn-primary:focus,
 .btn-primary:target {
-  box-shadow: var(--box-focus)!important;
+  box-shadow: var(--box-focus) var(--laranja-foco);
+  color: white!important;
 }
 
 
@@ -144,7 +161,8 @@ a:focus {
   position: relative;
 }
 
-.form-global .loading {
+.form-global .loading,
+.form-global .message {
   position: absolute;
   z-index: 1000;
   left: 0;
@@ -154,9 +172,9 @@ a:focus {
   align-items: center!important;
   justify-content: center!important;
   display: flex;
+  flex-direction: column;
   background: rgba(255, 255, 255, .8);
   border-radius: var(--raio);
-  display: none;
 }
 
 .form-global .form-title {
@@ -180,7 +198,7 @@ a:focus {
 
 .form-global .input-group:focus-within {
   border-color: var(--laranja);
-  box-shadow: var(--box-focus);
+  box-shadow: var(--box-focus) var(--laranja-foco);
 }
 
 .form-global .input-group-text {
@@ -205,4 +223,36 @@ a:focus {
   color: var(--marrom-escuro);
   font-weight: 400;
   font-size: 16px;
+}
+
+
+/* form-global errors */
+
+.form-global.error input,
+.form-global .input-group.error input {
+  color: var(--danger-color)!important;
+}
+
+.form-global.error .input-group,
+.form-global .input-group.error {
+  border-color: var(--danger-color);
+}
+
+.form-global.error .input-group:focus-within,
+.form-global .input-group.error:focus-within {
+  border-color: var(--danger-color)!important;
+  box-shadow: var(--box-focus) var(--danger-color-foco)!important;
+}
+
+.form-global.error .input-group .input-group-text
+.form-global .input-group.error .input-group-text {
+  color: var(--danger-color)!important;
+}
+
+.form-global .error-message {
+  color: var(--danger-color)!important;
+  font-size: 16px;
+  text-align: center;
+  margin: -10px 0 15px;
+  font-weight: 600;
 }

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AddVenture - Cadastrar Aventureiro</title>
+
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="css/global.css">
+
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous">
+    </script>
+    <!-- Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous">
+    </script>
+
+    <script src="js/jquery.mask.min.js"></script>
+
+    <script src="js/auth.js"></script>
+    <script src="js/global.js"></script>
+
+    <script src="js/cadastrar.js"></script>
+
+</head>
+<body>
+  <div class="container">
+
+  <div class="row justify-content-center py-5"><img src="imgs/logo.png"></div>
+  
+  <div class="row justify-content-center">
+    <div class="col-auto px-0">
+      <div class="container p-3 rounded form-global form-login">
+        <div class="container text-center form-title">Crie sua conta de aventureiro no AddVenture</div>
+
+        <form id="cadastrar" method="post">
+          <input type="hidden" name="user_type" value="1" />
+
+          <label for="name" class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+            </div>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nome completo" required>
+          </label>
+          
+
+          <label class="input-group" for="login">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" id="login" name="login" placeholder="Usuário" required>
+          </label>
+          
+
+          <label class="input-group" for="email">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            </div>
+            <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
+          </label>
+
+
+          <div class="row">
+            <div class="col">
+                <label class="input-group" for="password">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                </label>
+            </div>
+
+            
+            <div class="col pl-0">
+                <label class="input-group" for="confirm-password">
+                  <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirme sua senha" required>
+                </label>
+            </div>
+          </div>
+
+
+          <div class="hr mt-0"></div>
+
+
+          <label class="input-group" for="document">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+            </div>
+            <input type="text" class="form-control cpf" id="document" name="document" placeholder="CPF" required>
+          </label>
+
+
+          <label class="input-group" for="address">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-map-pin"></i></span>
+            </div>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Endereço" required>
+          </label>
+
+
+          <label class="input-group" for="phone">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-phone"></i></span>
+            </div>
+            <input type="tel" class="form-control tel" id="phone" name="phone" placeholder="Telefone" required>
+          </label>
+
+
+          <div class="container px-0 text-right footer">
+            <a href="login.html" class="mr-3">Fazer login em vez disso</a>
+            <button type="submit" class="btn btn-primary">Criar conta</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalWorkgroup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Workgroup</h5>
+          <button type="button" class="close text-danger" data-dismiss="modal">
+            <span class="fa fa-times"></span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p>
+            Bruno Noberto Gomes
+          </p>
+          <p>
+            Lincoln Teodoro de Carvalho Xavier da Silva
+          </p>
+          <p>
+            Mateus Carvalho Gonçalves
+          </p>
+          <p>
+            Pedro Antônio de Souza  
+          </p>
+          <p class="mb-0">
+            Wagner Jr. Moretti Tome
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger ml-auto mr-auto" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<div class="modal fade" id="modalAdventure1" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">How to use simulator</h5>
+        <button type="button" class="close text-danger" data-dismiss="modal">
+          <span class="fa fa-times"></span>
+        </button>
+      </div>
+
+      <div class="modal-body text-justify">
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger ml-auto mr-auto" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  
+</body>
+</html>

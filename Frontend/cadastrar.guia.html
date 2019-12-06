@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login AddVenture</title>
+  <title>AddVenture - Cadastrar Guia</title>
 
   <link
     rel="stylesheet"
@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
-  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="css/global.css">
 
 
     <!-- JQuery -->
@@ -30,62 +30,58 @@
       crossorigin="anonymous">
     </script>
 
-    <script src="../js/login.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+
+    <script src="js/auth.js"></script>
+    <script src="js/global.js"></script>
+
+    <script src="js/cadastrar.js"></script>
 
 </head>
 <body>
   <div class="container">
 
-  <div class="row justify-content-center py-5"><img src="../imgs/logo.png"></div>
+  <div class="row justify-content-center py-5"><img src="imgs/logo.png"></div>
   
   <div class="row justify-content-center">
     <div class="col-auto px-0">
       <div class="container p-3 rounded form-global form-login">
-        <div class="loading">
-          <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-        </div>
+        <div class="container text-center form-title">Crie sua conta de guia no AddVenture</div>
 
-        <div class="container text-center form-title">Crie sua conta do AddVenture</div>
+        <form id="cadastrar" method="post">
+          <input type="hidden" name="user_type" value="0" />
 
-        <form id="cadastrar-aventureiro" method="post">
-            
-          <div class="input-group">
+          <label for="name" class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-id-card"></i></span>
             </div>
-            <input type="text" class="form-control" name="name" placeholder="Nome completo" required>
-          </div>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nome completo" required>
+          </label>
           
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-            </div>
-            <input type="text" class="form-control" name="email" placeholder="E-mail" required>
-          </div>
 
-          <div class="input-group">
+          <label class="input-group" for="login">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" name="login" placeholder="Usuário" required>
-          </div>
+            <input type="text" class="form-control" id="login" name="login" placeholder="Usuário" required>
+          </label>
 
 
           <div class="row">
             <div class="col">
-                <div class="input-group">
+                <label class="input-group" for="password">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" name="password" placeholder="Senha" required>
-                </div>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                </label>
             </div>
 
             
             <div class="col pl-0">
-                <div class="input-group">
-                  <input type="password" class="form-control" name="confirm-password" placeholder="Confirme sua senha" required>
-                </div>
+                <label class="input-group" for="confirm-password">
+                  <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirme sua senha" required>
+                </label>
             </div>
           </div>
 
@@ -93,31 +89,31 @@
           <div class="hr mt-0"></div>
 
 
-          <div class="input-group">
+          <label class="input-group" for="document">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-id-card"></i></span>
             </div>
-            <input type="text" class="form-control" name="document" placeholder="CPF" required>
-          </div>
+            <input type="text" class="form-control cnpj" id="document" name="document" placeholder="CNPJ" required>
+          </label>
 
 
-          <div class="input-group">
+          <label class="input-group" for="address">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-map-pin"></i></span>
             </div>
-            <input type="text" class="form-control" name="address" placeholder="Endereço" required>
-          </div>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Endereço" required>
+          </label>
 
 
-          <div class="input-group">
+          <label class="input-group" for="phone">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-phone"></i></span>
             </div>
-            <input type="text" class="form-control" name="phone" placeholder="Telefone" required>
-          </div>
+            <input type="tel" class="form-control tel" id="phone" name="phone" placeholder="Telefone" required>
+          </label>
 
 
-          <div class="container px-0 text-right">
+          <div class="container px-0 text-right footer">
             <a href="login.html" class="mr-3">Fazer login em vez disso</a>
             <button type="submit" class="btn btn-primary">Criar conta</button>
           </div>

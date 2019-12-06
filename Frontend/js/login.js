@@ -1,36 +1,12 @@
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
 
-function tokenControl (request, token='') {
-  $.ajax({
-    type: "POST",
-    url: "../php/token.php",
-    data: {
-      'request': request,
-      'token': token
-    },
-    success: function(res) {
-      console.log(res);
-    }
-  });
-}
-
-function loadingFormShow (form, show=true) {
-  let loading = $(form).closest('.form-global').find('.loading');
-  if (show) loading.css('display', 'flex');
-  else loading.hide();
-}
+pageUnauthorized('index.html', false);
 
 $(document).ready(function(){
-  //TO DO se estiver logado, redireciona pra home
-  //senão executa abaixo
   $("#login").submit(function(e){
     let login_data = new FormData(this);
     let self = this;
+    
+    errorFormShow(false, this);
     loadingFormShow(this);
 
     $.ajax({
@@ -41,12 +17,31 @@ $(document).ready(function(){
       },
       data: JSON.stringify(Object.fromEntries(login_data)),
       success: function(res) {
-        alert(res.token);  
+        startSession(res);
+        pageUnauthorized('index.html', false);
         loadingFormShow(self, false);
       },
       error: function(xhr, status, error) {
-        console.log(xhr.status);
         loadingFormShow(self, false);
+
+        switch (xhr.status) {
+          case 404:
+              errorFormShow(true, self, 'Usuário ou senha incorreta.');
+            break;
+
+          case 401:
+              errorFormShow(true, self, 'Usuário ou senha incorreta.');
+            break;
+
+          case 400:
+              errorFormShow(true, self, 'Os dois campos são obrigatórios.');
+            break;
+          
+          default:
+            errorFormShow(true, self, 'Ocorreu um erro. Tente novamente!');
+            break;
+
+        }
       }
     })
 
