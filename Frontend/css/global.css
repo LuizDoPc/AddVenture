@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900&display=swap');
+
+* {
+  --marrom-escuro: #0A0909!important;
+  --marrom-medio: #2E2A26!important;
+  --marrom-claro: #47423E!important;
+  --marrom-10: #c5c0bc!important;
+  --laranja: #EF610F!important;
+  --laranja-hover: #ff6c17!important;
+  --laranja-foco: #EF610F66!important; /* opacity 40% */
+  --danger-color: #dc3545!important;
+  --danger-color-foco: #dc354566!important;
+  --box-focus: 0px 0px 0px 3px;
+  --raio: .25rem!important;
+  font-family: 'Cairo', sans-serif;
+}
+
+*:focus,
+*:target {
+  outline: none;
+  box-shadow: none;
+}
+
+body {
+  background: url(../imgs/background.png) no-repeat fixed var(--marrom-escuro);
+  background-size: cover;
+}
+
+
+
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--laranja);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hr {
+  border: 0;
+  border-top: 1px solid var(--marrom-10);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+a {
+  color: var(--laranja)!important;
+}
+
+a:hover,
+a:focus {
+  color: var(--laranja-hover)!important;
+  text-decoration: underline!important;
+}
+
+
+
+
+.btn-primary {
+  background: var(--laranja);
+  border-color: var(--laranja);
+  font-weight: 700;
+  color: white!important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:target {
+  background: var(--laranja-hover)!important;
+  border-color: var(--laranja)!important;
+  color: white!important;
+}
+
+.btn-primary:focus,
+.btn-primary:target {
+  box-shadow: var(--box-focus) var(--laranja-foco);
+  color: white!important;
+}
+
+
+
+
+
+
+
+
+.form-global *:focus {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+}
+
+.form-global {
+  background: white;
+  margin: 0 15px 15px;
+  position: relative;
+}
+
+.form-global .loading,
+.form-global .message {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center!important;
+  justify-content: center!important;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, .8);
+  border-radius: var(--raio);
+}
+
+.form-global .form-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--marrom-medio);
+  margin-bottom: 15px;
+}
+
+.form-global input {
+  height: 20px;
+  padding: 25px 15px;
+  color: var(--marrom-medio)!important;
+}
+
+.form-global .input-group {
+  margin-bottom: 20px;
+  border-radius: var(--raio);
+  border: 1px solid var(--marrom-10);
+}
+
+.form-global .input-group:focus-within {
+  border-color: var(--laranja);
+  box-shadow: var(--box-focus) var(--laranja-foco);
+}
+
+.form-global .input-group-text {
+  background: white;
+  color: var(--marrom-claro);
+  border: none;
+  padding-right: 2px;
+  padding-left: 15px;
+}
+
+.form-global .input-group-text i {
+  margin-left: auto;
+}
+
+.form-global .input-group:focus-within .input-group-text {
+  color: var(--laranja);
+}
+
+.form-global .form-control {
+  border: none;
+  padding-left: 13px;
+  color: var(--marrom-escuro);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+
+/* form-global errors */
+
+.form-global.error input,
+.form-global .input-group.error input {
+  color: var(--danger-color)!important;
+}
+
+.form-global.error .input-group,
+.form-global .input-group.error {
+  border-color: var(--danger-color);
+}
+
+.form-global.error .input-group:focus-within,
+.form-global .input-group.error:focus-within {
+  border-color: var(--danger-color)!important;
+  box-shadow: var(--box-focus) var(--danger-color-foco)!important;
+}
+
+.form-global.error .input-group .input-group-text
+.form-global .input-group.error .input-group-text {
+  color: var(--danger-color)!important;
+}
+
+.form-global .error-message {
+  color: var(--danger-color)!important;
+  font-size: 16px;
+  text-align: center;
+  margin: -10px 0 15px;
+  font-weight: 600;
+}

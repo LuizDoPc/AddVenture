@@ -1,0 +1,46 @@
+
+  <div class="cabecalho mb-3"><span>»</span> Cadastrar nova aventura</div>
+
+  
+  <div class="container p-3 m-0 rounded form-global form-login">
+
+      <form id="nova-aventura" method="post">
+          
+        <label for="title" class="input-group">
+          <input type="text" class="form-control" id="title" name="title" placeholder="Título da aventura" required>
+        </label>
+        
+
+        <label class="input-group" for="date">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+          </div>
+          <input type="date" class="form-control" id="date" name="date" placeholder="Data da aventura" required>
+        </label>
+        
+
+        <label class="input-group" for="location">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-map-pin"></i></span>
+          </div>
+          <input type="text" class="form-control" id="location" name="location" placeholder="Local" required>
+        </label>
+
+        <label class="input-group" for="description">
+          <textarea class="form-control" id="description" name="description" placeholder="Descrição da aventura" required></textarea>
+        </label>
+
+
+        <div class="container px-0 text-right footer">
+          <a href="home.html">Voltar para a home do Guia</a>
+          <button type="submit" class="btn btn-primary ml-3">Confirmar cadastro</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/cadastrar.aventura.js"></script>

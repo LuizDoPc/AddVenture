@@ -1,0 +1,5 @@
+checkAuth();
+
+$(document).ready(function() {
+
+});
