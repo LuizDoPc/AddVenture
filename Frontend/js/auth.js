@@ -98,7 +98,6 @@ function restrictLoggedOut (redirectTo) {
     updateSession();
 
     if(!hasToken() && !getSession('token')) {
-        document.write('403')
         window.location.replace(redirectTo+".html");
     }
 }
@@ -108,7 +107,6 @@ function restrictLoggedIn (redirectTo, userAllow=null) {
     updateSession();
 
     if(hasToken() && getSession('token') && (userAllow !== getSession('user')['user_type'])) {
-        document.write('403')
         window.location.replace(redirectTo+".html");
     }
 }
@@ -143,7 +141,7 @@ newRestrict('include/minhas.inscricoes', '../login', '../home', 1);
 
 function checkAuth () {
     var page = window.location.href.split('html/').pop().split('.html')[0];
-    
+   
     if (page in restrictions) {
         var restriction = restrictions[page];
 
@@ -152,6 +150,20 @@ function checkAuth () {
         
         if (restriction['in'] != null)
             restrictLoggedIn(restriction['in'], restriction['userAllow'])
+    }
+
+    if (window.location.href.split('html/').pop().includes('?page=')) {
+        var include = "include/"+window.location.href.split('html/').pop().split('page=')[1].split('&')[0];
+
+        if (include in restrictions) {
+            var restriction = restrictions[include];
+    
+            if (restriction['out'] != null)
+                restrictLoggedOut(restriction['out'].split('../')[1]);
+            
+            if (restriction['in'] != null)
+                restrictLoggedIn(restriction['in'].split('../')[1], restriction['userAllow'])
+        }
     }
     
 }
