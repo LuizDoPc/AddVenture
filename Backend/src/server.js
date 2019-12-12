@@ -15,6 +15,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.options('*', cors())
+
 app.post("/users", UserController.store);
 app.post("/login", AuthController.login);
 
