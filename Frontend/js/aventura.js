@@ -19,7 +19,7 @@ function tiposDeAventura () {
 
 var aventura_id = getUrlVars('id');
 var tipos_aventura = tiposDeAventura()
-var ehInscrito = getSession('user')['id'] == 1 ? userIsSubscripted(getSession('user')['id'], aventura_id) : false;
+var ehInscrito = getSession('user')['user_type'] == 1 ? userIsSubscripted(getSession('user')['id'], aventura_id) : false;
 
 function carregaAventura(id) {
   $.ajax({
@@ -128,7 +128,7 @@ function exibeAventura(aventura, edit=false) {
     else {
       createModelAdventureType(getSession('user')['id'], aventura_id);
 
-      if (!ehInscrito) {
+      if (ehInscrito === false) {
         createElements += '\
           <button class="btn btn-primary" id="inscrever" role="button" data-toggle="modal" data-target="#modal-tipo-aventura">\
             <i class="fa fa-check"></i> Inscrever-se\
