@@ -1,0 +1,10 @@
+#modal-tipo-aventura label {
+  background: var(--laranja);
+}
+
+#modal-tipo-aventura input[type="radio"]:checked+label{
+  background: var(--laranja-hover)!important;
+  border-color: var(--laranja)!important;
+  color: white!important;
+  text-decoration: none!important;
+}

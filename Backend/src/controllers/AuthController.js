@@ -14,11 +14,12 @@ module.exports = {
         where: { login },
         attributes: ["password"]
       });
-
+      
       const user = await User.findOne({
         where: { login }
       });
 
+      
       if (!userToCheck) return res.status(404).json("user-not-found");
 
       if (EncryptorService.comparePassword(password, userToCheck)) {

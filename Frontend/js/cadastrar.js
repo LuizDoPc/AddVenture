@@ -141,7 +141,6 @@ $(document).ready(function(){
       errorFormShow (true, '#phone', 'Telefone inválido!', true);
       return false;
     }
-    console.log('1')
 
     $.ajax({
       type: "POST",
@@ -156,7 +155,6 @@ $(document).ready(function(){
         loadingFormShow(self, false);
       },
       error: function(xhr, status, error) {
-        console.log('3')
         errorFormShow (true, self, 'Erro inexperado. Tente novamente!');
       }
     })

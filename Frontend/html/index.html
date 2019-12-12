@@ -31,44 +31,6 @@
 
 
       $(document).ready(function() {
-        
-        /*
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:4444/users",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          data: JSON.stringify({
-            name: "Pedro",
-            email: "pedro.souza2@estudante.ufla.br",
-            address: "Rua dos bobos, 0",
-            phone: "37 9 88251272",
-            login: "pedro",
-            password: "123",
-            document: "12345678908",
-            user_type: "1"
-          }),
-          success: function(res) {
-            console.log(res);
-          }
-        });
-          */
-      
-
-        /*
-        $.ajax({
-          type: "get",
-          url: "http://localhost:4444/tipo-aventura",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          data: "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjozNywiaWF0IjoxNTc1NDM0Mzg5LCJleHAiOjE1NzU2MDcxODl9.PkDwk4gClE32L-v4qm3GIkrIQd3F3vv8K7Ss02SphbM",
-          success: function(res) {
-            console.log(res);
-          }
-        });
-*/
         $("a.logout").click(function(){
           unsetSession();
           checkAuth();

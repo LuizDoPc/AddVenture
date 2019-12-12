@@ -10,7 +10,12 @@ function recuperaAventurasHome () {
     },
     data: "token="+getSession('token'),
     success: function(res) {
-      displayAventuras(res);
+      aventuras = []
+      res.forEach(function(aventura){
+        aventura['qtd'] = retornaInscritos(aventura['id']).length
+        aventuras.push(aventura)
+      })
+      displayAventuras(aventuras);
     },
     error: function(err) {
       return err;
@@ -19,12 +24,6 @@ function recuperaAventurasHome () {
 }
 
 $(document).ready(function(){
-  $('nav .logout').click(function() {
-    unsetSession();
-    checkAuth();
-  });
-
   recuperaAventurasHome();
-  eventosModaisAventura();
 
 })

@@ -15,7 +15,7 @@ function cadastrarAventura (self) {
     data: JSON.stringify(Object.fromEntries(dados)),
     success: function(res) {
       msgFormPopUp(self, true, '<p class="h1 mb-0"><b>"'+res.title+'"</b></p><p class="h4 mb-3">Aventura castrada com sucesso!</p>\
-      <p><a class="btn btn-primary" href="include/home.guia.html" target="include">Voltar para home</a></p>');
+      <p><a class="btn btn-primary" href="?page=home" target="include">Voltar para home</a></p>');
       loadingFormShow(self, false);
     },
     error: function(xhr, status, error) {
@@ -25,12 +25,6 @@ function cadastrarAventura (self) {
 }
 
 $(document).ready(function(){
-  if (getUrlVars()['edit'] == 1) {
-    alert('oi');
-  }
-
-  console.log(getUrlVars())
-
   $('#nova-aventura').submit(function(e){
     cadastrarAventura(this);
     e.preventDefault();

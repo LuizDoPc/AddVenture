@@ -9,8 +9,6 @@ $(document).ready(function(){
     errorFormShow(false, this);
     loadingFormShow(this);
 
-    console.log(Object.fromEntries(login_data));
-
     $.ajax({
       type: "POST",
       url: "http://localhost:4444/login",
