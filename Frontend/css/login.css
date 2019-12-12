@@ -1,0 +1,31 @@
+@import 'global.css';
+
+.form-login {
+  width: 450px;
+}
+
+.form-login .dropdown .btn {
+  color: var(--marrom-medio)!important;
+}
+
+.form-login .dropdown .btn:hover,
+.form-login .dropdown .btn:focus {
+  color: var(--laranja)!important;
+}
+
+.form-login .dropdown .btn i {
+  margin-left: 3px;
+}
+
+.form-login .dropdown .dropdown-menu a.dropdown-item {
+  color: var(--marrom-medio)!important;
+}
+
+.form-login .dropdown .dropdown-menu a.dropdown-item:hover {
+  color: var(--laranja)!important;
+}
+
+.form-login .dropdown .dropdown-menu a.dropdown-item:active {
+  color: white!important;
+  background: var(--laranja)!important;
+}
