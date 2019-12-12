@@ -157,12 +157,12 @@ function exibeAventura(aventura, edit=false) {
 
 function excluirAventura(id) {
   $.ajax({
-    type: "DEL",
+    type: "DELETE",
     url: "http://localhost:4444/aventura/"+id,
     headers: {
       "Content-Type": "application/json"
     },
-    data: "token="+getSession('token'),
+    data: JSON.stringify({token: getSession('token')}),
     success: function () {
       alert("Aventura excluida com sucesso!")
       incluirPagina("?page=home")
@@ -281,12 +281,12 @@ $(document).ready(function(){
 
 
       $.ajax({
-        type: "DEL",
+        type: "DELETE",
         url: "http://localhost:4444/subscription/"+ehInscrito['id'],
         headers: {
           "Content-Type": "application/json"
         },
-        data: "token="+getSession('token'),
+        data: JSON.stringify({token: getSession('token')}),
         success: function(res) {
           alert("Inscrição cancelada!")
           incluirPagina("?page=home")
