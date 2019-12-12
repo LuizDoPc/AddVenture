@@ -1,3 +1,43 @@
+function getUrlVars(ret=null) {
+  var vars = {};
+  var str = "?"
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
+      if (str == "?")
+        str += key+"="+value;
+      else
+        str += "&"+key+"="+value;
+  });
+  if (ret === null) return vars;
+  else if (ret === true) return str;
+  else if (typeof(ret) === "string") return vars[ret];
+  return false;
+}
+
+
+
+
+
+function loadingPage (show=true) {
+  var body = $("body")
+  if(body.find('.loading') !== null)
+    body.find('.loading').remove();
+
+  if (show) {
+    let createLoading = '<div class="loading">\
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>\
+    </div>';
+
+    body.prepend(createLoading);
+    
+  }
+}
+
+
+
+
+
+
 function loadingFormShow (form, show=true) {
   let formGlobal = $(form).closest('.form-global');
   
@@ -79,4 +119,11 @@ function campoProfile () {
   </div>';
 
   $('.conteudo-dir').html(campo);
+}
+
+
+
+function formatDate (date) {
+  var date = date.split("-");
+  return date[2] + '/' + date[1] + '/' + date[0];
 }

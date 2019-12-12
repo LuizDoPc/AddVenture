@@ -97,16 +97,16 @@ function hasToken () {
 function restrictLoggedOut (redirectTo) {
     updateSession();
 
-    if(!hasToken())
-        window.location.replace(redirectTo);
+    if(!hasToken() && !getSession('token'))
+        window.location.replace(redirectTo+".html");
 }
 
 
 function restrictLoggedIn (redirectTo, userAllow=null) {
     updateSession();
 
-    if(hasToken() && (userAllow !== getSession('user')['user_type']))
-        window.location.replace(redirectTo);
+    if(hasToken() && getSession('token') && (userAllow !== getSession('user')['user_type']))
+        window.location.replace(redirectTo+".html");
 }
 
 
@@ -117,19 +117,20 @@ function newRestrict (page='', redirectToIfLoggedOut=null, redirectToIfLoggedIn=
 }
 
 
-newRestrict('', 'login.html', 'home.html');
-newRestrict('index.html', 'login.html', 'home.html');
+newRestrict('', 'login', 'home');
 
-newRestrict('login.html', null, 'home.html');
+newRestrict('index', 'login', 'home');
 
-newRestrict('home.html', 'index.html');
+newRestrict('login', null, 'home');
 
-newRestrict('home.guia.html', 'login.html', 'home.html', 0);
+newRestrict('home', 'index');
 
-newRestrict('home.aventureiro.html', 'login.html', 'home.html', 1);
+newRestrict('home.guia', 'login', 'home', 0);
+
+newRestrict('home.aventureiro', 'login', 'home', 1);
 
 function checkAuth () {
-    var page = window.location.href.split('html/').pop();
+    var page = window.location.href.split('html/').pop().split('.html')[0];
 
     if (page in restrictions) {
         var restriction = restrictions[page];

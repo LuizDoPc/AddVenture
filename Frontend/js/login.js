@@ -3,7 +3,6 @@ checkAuth();
 
 $(document).ready(function(){
   $("#login").submit(function(e){
-    console.log(this);
     let login_data = new FormData(this);
     let self = this;
     
@@ -24,7 +23,6 @@ $(document).ready(function(){
       },
       error: function(xhr, status, error) {
         loadingFormShow(self, false);
-
         switch (xhr.status) {
           case 404:
               errorFormShow(true, self, 'Usuário ou senha incorreta.');
