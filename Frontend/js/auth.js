@@ -97,16 +97,20 @@ function hasToken () {
 function restrictLoggedOut (redirectTo) {
     updateSession();
 
-    if(!hasToken() && !getSession('token'))
+    if(!hasToken() && !getSession('token')) {
+        document.write('403')
         window.location.replace(redirectTo+".html");
+    }
 }
 
 
 function restrictLoggedIn (redirectTo, userAllow=null) {
     updateSession();
 
-    if(hasToken() && getSession('token') && (userAllow !== getSession('user')['user_type']))
+    if(hasToken() && getSession('token') && (userAllow !== getSession('user')['user_type'])) {
+        document.write('403')
         window.location.replace(redirectTo+".html");
+    }
 }
 
 
@@ -125,13 +129,21 @@ newRestrict('login', null, 'home');
 
 newRestrict('home', 'index');
 
-newRestrict('home.guia', 'login', 'home', 0);
+newRestrict('include/aventura', '../login');
 
-newRestrict('home.aventureiro', 'login', 'home', 1);
+newRestrict('include/cadastrar.aventura', '../login', '../home', 0);
+
+newRestrict('include/editar.aventura', '../login', '../home', 0);
+
+newRestrict('include/home.aventureiro', '../login', '../home', 1);
+
+newRestrict('include/home.guia', '../login', '../home', 0);
+
+newRestrict('include/minhas.inscricoes', '../login', '../home', 1);
 
 function checkAuth () {
     var page = window.location.href.split('html/').pop().split('.html')[0];
-
+    
     if (page in restrictions) {
         var restriction = restrictions[page];
 
@@ -141,6 +153,7 @@ function checkAuth () {
         if (restriction['in'] != null)
             restrictLoggedIn(restriction['in'], restriction['userAllow'])
     }
+    
 }
 
 checkAuth();
