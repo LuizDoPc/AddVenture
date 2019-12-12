@@ -1,86 +1,5 @@
 checkAuth();
 
-function createModalAdventure (aventura=[], id, editable=false) {
-  var tituloModal = '';
-  if (aventura.length == 0) {
-    tituloModal = 'Cadastrar nova aventura';
-    aventura['id'] = '';
-    aventura['title'] = '';
-    aventura['date'] = '';
-    aventura['location'] = '';
-    aventura['description'] = '';
-  }
-  else
-    tituloModal = aventura['title'];
-
-  if (editable) {
-  var modal = '<div class="modal fade" id="modalAdventure'+aventura['id']+'" tabindex="-1" role="dialog">\
-    <div class="modal-dialog" role="document">\
-      <div class="modal-content">\
-\
-        <div class="modal-header">\
-          <h5 class="modal-title">'+aventura['title']+'</h5>\
-          <button type="button" class="close text-danger" data-dismiss="modal">\
-            <span class="fa fa-times"></span>\
-          </button>\
-        </div>\
-\
-        <div class="modal-body">\
-          <div class="form-global">    \
-            <form class="form-modal-aventura" method="post">\
-              <input type="hidden" name="id" value="'+aventura['id']+'">\
-    \
-              <label for="title" class="input-group">\
-                <input type="text" class="form-control" id="title" name="title" placeholder="Título" value="'+aventura['title']+'" backup="'+aventura['title']+'" required="">\
-              </label>\
-              \
-              <label class="input-group" for="date">\
-                <div class="input-group-prepend">\
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>\
-                </div>\
-                <input type="date" class="form-control" id="date" name="date" placeholder="Data" value="'+aventura['date']+'" backup="'+aventura['date']+'" required="">\
-              </label>\
-              \
-              <label class="input-group" for="location">\
-                <div class="input-group-prepend">\
-                  <span class="input-group-text"><i class="fa fa-map-pin"></i></span>\
-                </div>\
-                <input type="input" class="form-control" id="location" name="location" placeholder="Local" value="'+aventura['location']+'" backup="'+aventura['location']+'" required="">\
-              </label>\
-              \
-              <label class="input-group" for="description">\
-                <textarea class="form-control" id="description" name="description" placeholder="Descrição" backup="'+aventura['description']+'" required>'+aventura['description']+'</textarea>\
-              </label>\
-              \
-              <div class="container px-0 text-right footer">\
-                <a href="#" class="mr-3 descartar" data-dismiss="modal">Descartar alterações</a>\
-                <button type="submit" class="btn btn-primary">Salvar alterações</button>\
-              </div>\
-              \
-            </form>\
-            \
-          </div>\
-          \
-        </div>\
-\
-      </div>\
-    </div>\
-  </div>';
-
-  return modal;
-  }
-}
-
-function eventosModaisAventura () {
-  $('.modal').on('hidden.bs.modal', function () {
-    var formulario = $(this).find('form');
-    
-    formulario.find('textarea, input').each(function() {
-      $(this).val($(this).attr('backup'));
-    })
-  })
-}
-
 //aventuras dispoe aventuras
  function displayAventuras (aventuras = []) {
   var editable = false;
@@ -88,17 +7,20 @@ function eventosModaisAventura () {
 
   if (aventuras.length > 0) {
     let createElements = '';
-    let indexSorteio = Math.floor(Math.random() * aventuras.length);
-    let aventuraDestaque = aventuras[indexSorteio];
-    delete aventuras[indexSorteio];
+    let numAle = Math.floor(Math.random() * 10);
+    let aventuraDestaque = aventuras[0];
+    delete aventuras[0];
   
-    let jumbotron = '<div class="jumbotron">\
-    <h1 class="display-4">'+aventuraDestaque['title']+'</h1>\
-    <p>'+aventuraDestaque['description']+'</p>\
-    <p>'+aventuraDestaque['date']+'</p>\
-    <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#modalAdventure'+aventuraDestaque['id']+'">Ver detalhes</a>\
+    let jumbotron = '<div class="jumbotron p-0" style="background-image: url(\'../imgs/addventure/addventure'+((numAle+aventuraDestaque['id'])%12)+'.jpg\')">\
+    <div class="bg-linear rounded">\
+      <div>\
+        <h1 class="display-4">'+aventuraDestaque['title']+'</h1>\
+        <div class="date"><span><i class="fa fa-calendar"></i> '+formatDate(aventuraDestaque['date'])+'</span></div>\
+        <p>'+aventuraDestaque['description']+'</p>\
+        <a class="btn btn-primary btn-lg" href="?page=aventura.guia&id='+aventuraDestaque['id']+'">Ver aventura</a>\
+      </div>\
+    </div>\
     </div>';
-    $('body').append(createModalAdventure(aventuraDestaque, aventuraDestaque['id'], editable));
 
     createElements += jumbotron;
 
@@ -106,16 +28,15 @@ function eventosModaisAventura () {
 
     aventuras.forEach(function(aventura){
       card += '<div class="card">\
-              <!-- img class="card-img-top" src=".../100px160/" alt="Card image cap" -->\
+              <div class="card-img-top" style="background-image: url(\'../imgs/addventure/addventure'+((numAle+aventura['id'])%12)+'.jpg\')"></div>\
               <div class="card-body">\
-                <h5 class="card-title">'+aventura['title']+'</h5>\
+                <h5 class="card-title m-0">'+aventura['title']+'</h5>\
+                <p class="text-muted"><i class="fa fa-calendar"></i> '+formatDate(aventura['date'])+'</p>\
                 <p class="card-text">'+aventura['description']+'</p>\
-                <p class="card-text"><small class="text-muted">'+aventura['date']+'</small></p>\
-                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAdventure'+aventura['id']+'">Ver detalhes</a>\
+                <a href="?page=aventura.guia&id='+aventura['id']+'" target="include" class="btn btn-primary">Ver aventura</a>\
               </div>\
             </div>';
       
-      $('body').append(createModalAdventure(aventura, aventura['id'], editable));
     })
     card += '</div>';
 
@@ -127,8 +48,26 @@ function eventosModaisAventura () {
 }
 
 
-function incluirPagina (src) {
-  $('.include').load(src);
+function incluirPagina (src,) {
+  var vars = {};
+  var parts = src.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value
+  });
+
+  window.history.replaceState('','',src)
+
+  if (vars['page'] == 'home') {
+    switch (getSession('user')['user_type']) {
+      case 0:
+        vars['page'] = 'home.guia';
+        break;
+      case 1:
+        vars['page'] = 'home.aventureiro';
+        break;
+    }
+  }
+
+  $('.include').load('include/'+vars['page']+'.html');
 }
 
 
@@ -138,14 +77,8 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-  switch (getSession('user')['user_type']) {
-    case 0:
-      incluirPagina('../html/include/home.guia.html');
-      break;
-    case 1:
-      incluirPagina('../html/include/home.aventureiro.html');
-      break;
-  }
+  if (getUrlVars('page') !== undefined) incluirPagina(getUrlVars(true));
+  else incluirPagina("?page=home");
   
   campoProfile();
 

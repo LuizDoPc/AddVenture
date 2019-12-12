@@ -1,23 +1,22 @@
 
-  <div class="cabecalho mb-3"><span>»</span> Cadastrar nova aventura</div>
+  <div class="cabecalho mb-3"><span>»</span> Editar aventura</div>
 
   
   <div class="container p-3 m-0 rounded form-global form-login">
 
-      <form id="nova-aventura" method="post">
-          
+      <form id="editar-aventura" method="post">
         <div class="rotulo">Título da aventura</div>
         <label for="title" class="input-group">
-          <input type="text" class="form-control" id="title" name="title" required>
+          <input type="text" class="form-control" id="title" name="title" value="Carregando..." disabled="disabled" placeholder="Título da aventura" required>
         </label>
         
-
+        
         <div class="rotulo">Data da aventura</div>
         <label class="input-group" for="date">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
           </div>
-          <input type="date" class="form-control" id="date" name="date" required>
+          <input type="date" class="form-control" id="date" name="date" value="Carregando..." disabled="disabled" placeholder="Data da aventura" required>
         </label>
         
 
@@ -26,19 +25,19 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa fa-map-pin"></i></span>
           </div>
-          <input type="text" class="form-control" id="location" name="location" required>
+          <input type="text" class="form-control" id="location" name="location" value="Carregando..." disabled="disabled" placeholder="Local" required>
         </label>
 
 
         <div class="rotulo">Descrição</div>
         <label class="input-group" for="description">
-          <textarea class="form-control" id="description" name="description" required></textarea>
+          <textarea class="form-control" id="description" name="description" value="Carregando..." disabled="disabled" placeholder="Descrição da aventura" required></textarea>
         </label>
 
 
         <div class="container px-0 text-right footer">
-          <a href="home.html">Voltar para a home do Guia</a>
-          <button type="submit" class="btn btn-primary ml-3">Confirmar cadastro</button>
+          <a href="?page=home" class="descartar">Descartar alterações</a>
+          <button type="submit" class="btn btn-primary ml-3">Salvar</button>
         </div>
 
       </form>
@@ -48,4 +47,4 @@
 
 
   <script src="../js/auth.js"></script>
-  <script src="../js/cadastrar.aventura.js"></script>
+  <script src="../js/editar.aventura.js"></script>

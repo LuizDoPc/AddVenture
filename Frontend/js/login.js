@@ -3,12 +3,13 @@ checkAuth();
 
 $(document).ready(function(){
   $("#login").submit(function(e){
-    console.log(this);
     let login_data = new FormData(this);
     let self = this;
     
     errorFormShow(false, this);
     loadingFormShow(this);
+
+    console.log(Object.fromEntries(login_data));
 
     $.ajax({
       type: "POST",
@@ -24,7 +25,6 @@ $(document).ready(function(){
       },
       error: function(xhr, status, error) {
         loadingFormShow(self, false);
-
         switch (xhr.status) {
           case 404:
               errorFormShow(true, self, 'Usuário ou senha incorreta.');

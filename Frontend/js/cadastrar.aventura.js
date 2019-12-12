@@ -25,6 +25,12 @@ function cadastrarAventura (self) {
 }
 
 $(document).ready(function(){
+  if (getUrlVars()['edit'] == 1) {
+    alert('oi');
+  }
+
+  console.log(getUrlVars())
+
   $('#nova-aventura').submit(function(e){
     cadastrarAventura(this);
     e.preventDefault();
