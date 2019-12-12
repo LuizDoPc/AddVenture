@@ -74,9 +74,8 @@ function userIsSubscripted(user_id, adventure_id) {
     data: "token="+getSession('token'),
     success: function(res) {
       const existe = res.find(search => search.adventure_id == adventure_id);
-      if (existe === undefined)
-        retorno = false
-      retorno = existe;
+      if (existe === undefined) retorno = false
+      else retorno = existe;
     }
   });
   return retorno;
