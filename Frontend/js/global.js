@@ -124,6 +124,6 @@ function campoProfile () {
 
 
 function formatDate (date) {
-  date = new Date(date);
-  return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+  var date = date.split("-");
+  return date[2] + '/' + date[1] + '/' + date[0];
 }

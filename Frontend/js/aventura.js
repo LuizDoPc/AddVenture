@@ -104,9 +104,10 @@ function exibeAventura(aventura, edit=false) {
     createElements += '\
       <span><i class="fa fa-calendar"></i> '+formatDate(aventura['date'])+'</span>'
 
-    if (!edit)
+    if (ehInscrito)
       createElements += ' <span><i class="fa fa-check"></i> Inscrito na categoria '+ehInscrito.adventure_type.description+'</span><br>';
-    else {
+    
+    if (edit) {
       qtd = retornaInscritos(aventura_id).length
       s = qtd > 1 ? 's' : ''
       createElements += ' <span><i class="fa fa-check"></i> '+qtd+' inscrito'+s+'</span><br>';
